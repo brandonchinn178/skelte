@@ -1,0 +1,11 @@
+<script lang="hs">
+import qualified MyApp.Child as Child
+
+let testName = "Alice"
+</script>
+
+<h1>My Page</h1>
+<Child name={testName} />
+<Child name="Bill">
+  Some content
+</Child>

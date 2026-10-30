@@ -1,0 +1,7 @@
+<script lang="hs">
+  name <- @prop String
+  children <- @children
+</script>
+
+<p>My name is {name}</p>
+{children}
