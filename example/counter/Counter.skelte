@@ -1,0 +1,13 @@
+<script lang="hs">
+  count <- #state 0 :: Int
+  countDoubled <- #derived count * 2
+</script>
+
+<input type="number" bind:value={count} />
+<button onclick={count.modify (+ 1)}>count</button>
+
+<style>
+button {
+  font-size: 2em;
+}
+</style>

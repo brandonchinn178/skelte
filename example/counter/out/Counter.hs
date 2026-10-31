@@ -1,23 +1,24 @@
--- Desugaring of counter.hsml
+-- Generated from Counter.skelte
 
 {-# LANGUAGE OverloadedRecordDot #-}
 
-import Component
+skelte'componentKey :: Skelte'Internal.Key
+skelte'componentKey = 987
 
-component :: Component () NoChildren
-component _ _ = do
-  count <- Lib.signal (0 :: Int)
-  countDoubled <- Lib.derived $ (* 2) <$> count.get
+skelte'component :: Skelte'Internal.Component ()
+skelte'component skelte'anchor _ = do
+  skelte'fragment <- Skelte'Internal.templatize skelte'componentKey "<input type=\"number\"/> <button class=\"skelte-987\">count</button>"
 
-  -- render
-  count_val <- count.get
-  pure $ do
-    Blaze.input
-      [A.type_ "number", A.class_ "id-123", A.value (render count_val)]
-      [A.onValue count.set]
-      (pure ())
-    Blaze.button
-      [A.class_ "id-123"]
-      [A.onClick (count.modify (+ 1))]
-      (Blaze.text "count")
-    Blaze.style "button.id-123 {\n  font-size: 2em;\n}"
+  count <- Skelte'Internal.state (0 :: Int)
+  countDoubled <- Skelte'Internal.derived $ do
+    skelte'count <- count.get
+    pure $ skelte'count * 2
+
+  let skelte'input = Skelte'Internal.firstChild skelte'fragment
+  Skelte'Internal.removeInputDefaults skelte'input
+  
+  let skelte'button = Skelte'Internal.sibling skelte'input 2
+
+  Skelte'Internal.bindValue skelte'input (Skelte'Internal.get count) (Skelte'Internal.set count)
+  Skelte'Internal.delegated "click" skelte'button (count.modify (+ 1))
+  Skelte'Internal.append skelte'anchor skelte'fragment

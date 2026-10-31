@@ -1,7 +1,7 @@
 <script lang="hs">
-import qualified MyApp.Child as Child
+  import qualified MyApp.Child as Child
 
-let testName = "Alice"
+  let testName = "Alice"
 </script>
 
 <h1>My Page</h1>
